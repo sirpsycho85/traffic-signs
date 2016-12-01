@@ -34,7 +34,7 @@ jupyter notebook Traffic_Signs_Recognition.ipynb
 
 ### License
 
-With help from https://github.com/Hvass-Labs/TensorFlow-Tutorials
+I used/reworked some code from https://github.com/Hvass-Labs/TensorFlow-Tutorials
 
 The MIT License (MIT)
 
