@@ -3,18 +3,17 @@
 # import matplotlib.pyplot as plt
 import tensorflow as tf
 import numpy as np
-from sklearn.metrics import confusion_matrix
-import time
-from datetime import timedelta
-import math
+# from sklearn.metrics import confusion_matrix
+# import time
+# from datetime import timedelta
+# import math
 # import cv2
 import numpy as np
 from collections import Counter
 from sklearn.preprocessing import LabelBinarizer
 import matplotlib.image as mpimg
 
-# config
-num_iterations = 100
+num_iterations = 1000
 
 # processing
 
@@ -278,29 +277,6 @@ def print_accuracy():
 print('pre-training accuracy: ')
 print_accuracy()
 
-print('accuracy:')
-optimize(num_iterations=num_iterations)
+print('accuracy after 100 iterations: ')
+optimize(num_iterations)
 print_accuracy()
-
-# my images
-img1 = mpimg.imread('img1.jpg')
-img2 = mpimg.imread('img2.jpg')
-img3 = mpimg.imread('img3.jpg')
-img4 = mpimg.imread('img4.jpg')
-img5 = mpimg.imread('img5.jpg')
-X_new = np.concatenate((img1,img2,img3,img4,img5), axis=0).reshape(-1,32,32,3)
-y_new_cls = np.array([14,26,14,4,38])
-encoder = LabelBinarizer()
-encoder.fit(y_train_cls)
-y_new = encoder.transform(y_new_cls).astype(np.float32)
-
-feed_dict_new = {x: X_new,
-                  y_true: y_new,
-                  y_true_cls: y_new_cls,
-                  keep_prob: 1.0}
-
-correct, pred_cls, pred = session.run([correct_prediction, y_pred_cls, y_pred], feed_dict=feed_dict_new)
-
-print(correct)
-print(pred_cls)
-print(pred)
