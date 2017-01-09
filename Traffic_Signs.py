@@ -14,7 +14,7 @@ from sklearn.preprocessing import LabelBinarizer
 import matplotlib.image as mpimg
 
 # config
-num_iterations = 100
+num_iterations = 1000
 
 # processing
 
@@ -220,7 +220,7 @@ layer_last = new_fc_layer(layer_fc1,          # The previous layer.
 # get softmax and predicted class
 
 y_pred = tf.nn.softmax(layer_last)
-y_pred_cls = tf.argmax(y_pred, dimension=1)
+y_pred_cls = tf.argmax(layer_last, dimension=1) # was y_pred
 
 
 # cost function
@@ -270,8 +270,9 @@ feed_dict_test = {x: X_test,
                   keep_prob: 1.0}
 
 def print_accuracy():
-    acc = session.run(accuracy, feed_dict=feed_dict_test)
+    acc,correct,pred_cls,pred = session.run([accuracy,correct_prediction, y_pred_cls, y_pred], feed_dict=feed_dict_test)
     print("Accuracy on test-set: {0:.1%}".format(acc))
+    print(pred[0])
 
 # training
 
