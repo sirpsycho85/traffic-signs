@@ -305,3 +305,7 @@ correct, pred_cls, pred = session.run([correct_prediction, y_pred_cls, y_pred], 
 print(correct)
 print(pred_cls)
 print(pred)
+
+top_k_preds = session.run(tf.nn.top_k(y_pred, k=3),feed_dict=feed_dict_new)
+print(top_k_preds.values)
+print(top_k_preds.indices)
