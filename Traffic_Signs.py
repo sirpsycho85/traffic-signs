@@ -302,10 +302,14 @@ feed_dict_new = {x: X_new,
 
 correct, pred_cls, pred = session.run([correct_prediction, y_pred_cls, y_pred], feed_dict=feed_dict_new)
 
+# shows true if predicted class for each image was correct
 print(correct)
+# shows predicted classes
 print(pred_cls)
+# shows softmax probabilities, which are very close to 1 and 0. Note that if you have less training iterations, these probabilitse are more diffuse, so I don't know if this is a bug...
 print(pred)
 
+# shows top k classes
 top_k_preds = session.run(tf.nn.top_k(y_pred, k=3),feed_dict=feed_dict_new)
 print(top_k_preds.values)
 print(top_k_preds.indices)
